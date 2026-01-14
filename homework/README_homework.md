@@ -1,1 +1,1 @@
-This is a homework assignment to test using Git and Github
+This is all homework assignemnts for MATH 3190

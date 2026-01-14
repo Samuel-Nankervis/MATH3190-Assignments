@@ -1,0 +1,1 @@
+This is all lab assignemnts for MATH 3190
