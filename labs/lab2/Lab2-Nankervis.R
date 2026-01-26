@@ -92,14 +92,16 @@ ggplot(midwest_summary, aes(x = state, y = count)) +
         axis.text = element_text(size = 12),
         plot.title = element_text(size = 18, face = "bold"))
 #Question 6
-#requires import of treeseeds.txt in Lab 2 folder
+#requires working directory to be set in the data folder
+setwd("C:\\Users\\Samuel\\Desktop\\R-scripts-and-data\\MATH3190\\MATH3190-Assignments\\data")
 #a
+treeseeds = read.csv("treeseeds.txt")
 head(treeseeds)
 #b
-#requires import of blood_pressure.txt in Lab 2 folder
+blood_pressure = read.table("blood_pressure.txt",header = TRUE)
 head(blood_pressure)
 #c
-#requires import of Concrete_Data.txt in Lab 2 folder
+Concrete_Data = read.table("Concrete_Data.txt",header = TRUE, sep = "\t")
 head(Concrete_Data)
 #question 7
 #a
