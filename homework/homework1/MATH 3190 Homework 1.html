@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MATH 3190 Homework 1</title>
+<style class="anchorjs"></style><style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="MATH%203190%20Homework%201_files/clipboard.min.js"></script>
+<script src="MATH%203190%20Homework%201_files/quarto.js"></script>
+<script src="MATH%203190%20Homework%201_files/popper.min.js"></script>
+<script src="MATH%203190%20Homework%201_files/tippy.umd.min.js"></script>
+<script src="MATH%203190%20Homework%201_files/anchor.min.js"></script>
+<link href="MATH%203190%20Homework%201_files/tippy.css" rel="stylesheet">
+<link href="MATH%203190%20Homework%201_files/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="MATH%203190%20Homework%201_files/bootstrap.min.js"></script>
+<link href="MATH%203190%20Homework%201_files/bootstrap-icons.css" rel="stylesheet">
+<link href="MATH%203190%20Homework%201_files/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+<style>.ansi-display{font-family:monospace;white-space:pre-wrap;--ansiBlack: #000000;--ansiRed: #cd3131;--ansiGreen: #00BC00;--ansiYellow: #949800;--ansiBlue: #0451a5;--ansiMagenta: #bc05bc;--ansiCyan: #0598bc;--ansiWhite: #555555;--ansiBrightBlack: #666666;--ansiBrightRed: #cd3131;--ansiBrightGreen: #14CE14;--ansiBrightYellow: #b5ba00;--ansiBrightBlue: #0451a5;--ansiBrightMagenta: #bc05bc;--ansiBrightCyan: #0598bc;--ansiBrightWhite: #a5a5a5}.dark-mode .ansi-display{--ansiBlack: #000000;--ansiRed: #cd3131;--ansiGreen: #0DBC79;--ansiYellow: #e5e510;--ansiBlue: #2472c8;--ansiMagenta: #bc3fbc;--ansiCyan: #11a8cd;--ansiWhite: #e5e5e5;--ansiBrightBlack: #666666;--ansiBrightRed: #f14c4c;--ansiBrightGreen: #23d18b;--ansiBrightYellow: #f5f543;--ansiBrightBlue: #3b8eea;--ansiBrightMagenta: #d670d6;--ansiBrightCyan: #29b8db;--ansiBrightWhite: #e5e5e5}@keyframes ansi-displaly-run-blink{50%{opacity:0}}.fui-FluentProvider h2{border-bottom:none;padding-bottom:0}</style><style data-make-styles-bucket="d" data-priority="0"></style><style id="fui-FluentProviderr0"></style></head>
+
+<body class="fullcontent quarto-light" data-tabster="{&quot;root&quot;:{}}">
+
+<i tabindex="0" role="none" data-tabster-dummy="" aria-hidden="true" style="position: fixed; height: 1px; width: 1px; opacity: 0.001; z-index: -1; content-visibility: hidden; top: 0px; left: 0px;"></i><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><strong>MATH 3190 Homework 1</strong></h1>
+<p class="subtitle lead"></p><p>Samuel Nankervis Due January 29, 2026<br>
+Focus: Notes 1-3<br>
+Total Points: 90 + 10 (Self-Critique Comment and Uploading to GitHub) = 100</p><p></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Note that your homework should be completed in Quarto. You can just 
+add your answers and code to this document in the appropriate part. The 
+file should be rendered as an html document or pdf document (html is 
+quicker to render and you will need an installation of LaTeX to render 
+as a pdf). You will “turn in” this homework by uploading the files, the 
+.qmd and output file, to your GitHub <code>Math_3190_Assignment</code> repository in the <code>Homework/Homework_1</code> directory. Make sure all supporting files (if there are any) are in this directory as well. You should use <code>git</code> and <code>Unix</code>
+ commands in a terminal for this (i.e.&nbsp;don’t manually upload files 
+to GitHub). In addition, you will submit just your html or pdf file on 
+Canvas to unlock the solutions.</p>
+<p>Don’t forget to also put a <u>self-critique comment</u> on Canvas 
+indicating what you did correctly and incorrectly and include any 
+questions you may have about the assignment after submitting the 
+assignment and thoroughly looking through the solutions.</p>
+<section id="problem-1-18-points" class="level1">
+<h1>Problem 1 (18 points)</h1>
+<p>In <u>two different code chunks</u>, write two functions called <code>gghist</code> and <code>ggbox</code>. The first code chunk is already given below, but you’ll need to add the second one. The <code>gghist</code> function should create a ggplot histogram of a variable that is given as a vector. The <code>ggbox</code>
+ function should create a ggplot box plot when a single numeric vector 
+is given or it should create side-by-side box plots if one numeric and 
+one categorical variables are given. You can check if a vector is 
+numeric with the <code>is.numeric()</code> function. Allow the user to indicate whether it should be horizontal or vertical box plots. Make sure you set <code>echo</code> and <code>eval</code> both to <code>true</code> for these code chunks. Also make sure to label the code chunks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>histogramer <span class="ot">=</span> <span class="cf">function</span>(values,x,y,title){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#makes a bar chart for the States</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">=</span> <span class="fu">data.frame</span>(values)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> values)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">min</span>(values), <span class="fu">max</span>(values))) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> x, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> y,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> title) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">histogramer</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>),<span class="st">"x"</span>,<span class="st">"Y"</span>,<span class="st">"title"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MATH%203190%20Homework%201_files/gghist-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>box <span class="ot">=</span> <span class="cf">function</span>(values, by,X,Y,Title){</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">=</span> <span class="fu">data.frame</span>(values, by)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> by, <span class="at">y =</span> values)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y,<span class="at">title =</span> Title) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="fl">6.79</span>),<span class="fu">c</span>(<span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>),<span class="st">"x"</span>,<span class="st">"y"</span>,<span class="st">"title"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MATH%203190%20Homework%201_files/ggbox-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-2-57-points" class="level1">
+<h1>Problem 2 (57 points)</h1>
+<section id="part-a-6-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-6-points">Part a (6 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-a-6-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Learn about the built-in <code>read.fwf()</code> <strong>R</strong> function for use in downloading data from a URL into <strong>R</strong>. The <code>widths</code> and <code>strip.white</code>
+ options will be especially useful here. Use this function to download 
+the scores for all college basketball games for the 2024-2025 season <a href="http://kenpom.com/cbbga26.txt">http://kenpom.com/cbbga26.txt</a> and then convert it to a tibble (load the <code>tidyverse</code>
+ package first). The second team listed per line is the home team. It is
+ not clear what the numbers, letters, or city names indicate after the 
+second listed score. Notice that this is a “live” file that gets updated
+ every day! So, your tibble size may change if you work on this 
+assignment over the course of several days. That’s fine. Give the code 
+you used to download these data in a labeled code chunk.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cbbga <span class="ot">=</span> <span class="fu">read.fwf</span>(<span class="st">"https://kenpom.com/cbbga26.txt"</span>, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">24</span>,<span class="dv">3</span>,<span class="dv">24</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">24</span>), <span class="at">strip.white =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>,<span class="st">"Away"</span>,<span class="st">"AwayScore"</span>,<span class="st">"Home"</span>,<span class="st">"HomeScore"</span>, <span class="st">"?"</span>, <span class="st">"??"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now lets practice using our tidy data/tidyverse tools! Using your <code>cbbga</code> tibble, try doing the following. In each part, save the object as a new tibble (like <code>cbbga2</code>, <code>cbbga3</code>, etc) and in each subsequent part, use the tibble you created in the previous part.</p>
+</section>
+<section id="part-b-2-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-2-points">Part b (2 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-b-2-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Use <code>rename()</code> to rename all of your variables to names that make sense. Then print the first six rows of the new tibble using the <code>head()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note, I already did this above but this is how you would rename them.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cbbga) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Date"</span>,<span class="st">"Away"</span>,<span class="st">"AwayScore"</span>,<span class="st">"Home"</span>,<span class="st">"HomeScore"</span>, <span class="st">"Something 1"</span>, <span class="st">"Something 2"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cbbga)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date          Away AwayScore              Home HomeScore Something 1
+1 11/03/2025       McMurry        55 Abilene Christian        92            
+2 11/03/2025 James Madison        71             Akron        85            
+3 11/03/2025  North Dakota        62           Alabama        91            
+4 11/03/2025 Blue Mountain        60       Alabama A&amp;M        80            
+5 11/03/2025       Florida        87           Arizona        93           N
+6 11/03/2025      Southern        77          Arkansas       109            
+    Something 2
+1              
+2              
+3              
+4              
+5 Las Vegas, NV
+6              </code></pre>
+</div>
+</div>
+</section>
+<section id="part-c-2-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-2-points">Part c (2 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-c-2-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Use <code>mutate()</code> to create a new column that gives the score
+ differences (home team score minus away team score). Then print the 
+first six rows of the new tibble using the <code>head()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cbbga2 <span class="ot">=</span> <span class="fu">mutate</span>(cbbga, <span class="at">Difference =</span> HomeScore <span class="sc">-</span> AwayScore)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cbbga2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date          Away AwayScore              Home HomeScore Something 1
+1 11/03/2025       McMurry        55 Abilene Christian        92            
+2 11/03/2025 James Madison        71             Akron        85            
+3 11/03/2025  North Dakota        62           Alabama        91            
+4 11/03/2025 Blue Mountain        60       Alabama A&amp;M        80            
+5 11/03/2025       Florida        87           Arizona        93           N
+6 11/03/2025      Southern        77          Arkansas       109            
+    Something 2 Difference
+1                       37
+2                       14
+3                       29
+4                       20
+5 Las Vegas, NV          6
+6                       32</code></pre>
+</div>
+</div>
+</section>
+<section id="part-d-2-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-2-points">Part d (2 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-d-2-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Use <code>arrange()</code> to sort the data set by the home team alphabetically. Then print the first six rows of the new tibble using the <code>head()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cbbga2<span class="fl">.5</span> <span class="ot">=</span> <span class="fu">arrange</span>(cbbga2, Home)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cbbga2<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date                   Away AwayScore              Home HomeScore
+1 11/03/2025                McMurry        55 Abilene Christian        92
+2 11/06/2025         Nebraska Omaha        71 Abilene Christian        73
+3 11/11/2025 Southwestern Adventist        63 Abilene Christian       104
+4 11/25/2025         William &amp; Mary        92 Abilene Christian        58
+5 11/28/2025       Jarvis Christian        55 Abilene Christian        87
+6 12/06/2025         New Mexico St.        69 Abilene Christian        77
+  Something 1      Something 2 Difference
+1                                      37
+2                                       2
+3                                      41
+4           N Jacksonville, FL        -34
+5                                      32
+6                                       8</code></pre>
+</div>
+</div>
+</section>
+<section id="part-e-2-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-e-2-points">Part e (2 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-e-2-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Use <code>select()</code> to remove the extra variable(s) that had 
+that irrelevant information at the end of each line. Note: you can 
+select every variable except one by using <code>!</code>. Then print the first six rows of the new tibble using the <code>head()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>cbbga3 <span class="ot">=</span> <span class="fu">select</span>(cbbga2<span class="fl">.5</span>, Date, Home, HomeScore, Away, AwayScore, Difference)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cbbga3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date              Home HomeScore                   Away AwayScore
+1 11/03/2025 Abilene Christian        92                McMurry        55
+2 11/06/2025 Abilene Christian        73         Nebraska Omaha        71
+3 11/11/2025 Abilene Christian       104 Southwestern Adventist        63
+4 11/25/2025 Abilene Christian        58         William &amp; Mary        92
+5 11/28/2025 Abilene Christian        87       Jarvis Christian        55
+6 12/06/2025 Abilene Christian        77         New Mexico St.        69
+  Difference
+1         37
+2          2
+3         41
+4        -34
+5         32
+6          8</code></pre>
+</div>
+</div>
+</section>
+<section id="part-f-3-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-f-3-points">Part f (3 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-f-3-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Put parts a-e all together in one piping expression (with 5 pipes) and save this as a new object in <strong>R</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Hot take, I think pipes look ugly and are super unreadable. </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cbbga4 <span class="ot">=</span> <span class="fu">read.fwf</span>(<span class="st">"https://kenpom.com/cbbga26.txt"</span>, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">24</span>,<span class="dv">3</span>,<span class="dv">24</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">24</span>), <span class="at">strip.white =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>,<span class="st">"Away"</span>,<span class="st">"AwayScore"</span>,<span class="st">"Home"</span>,<span class="st">"HomeScore"</span>, <span class="st">"?"</span>, <span class="st">"??"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Difference =</span> HomeScore <span class="sc">-</span> AwayScore) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(Home) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(Date, Home, HomeScore, Away, AwayScore, Difference)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cbbga4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date              Home HomeScore                   Away AwayScore
+1 11/03/2025 Abilene Christian        92                McMurry        55
+2 11/06/2025 Abilene Christian        73         Nebraska Omaha        71
+3 11/11/2025 Abilene Christian       104 Southwestern Adventist        63
+4 11/25/2025 Abilene Christian        58         William &amp; Mary        92
+5 11/28/2025 Abilene Christian        87       Jarvis Christian        55
+6 12/06/2025 Abilene Christian        77         New Mexico St.        69
+  Difference
+1         37
+2          2
+3         41
+4        -34
+5         32
+6          8</code></pre>
+</div>
+</div>
+</section>
+<section id="part-g-3-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-g-3-points">Part g (3 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-g-3-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Use <code>filter()</code> to reduce the data down to only games played in 2025 (you could use the <code>lubridate</code> package for this, since it specializes in dealing with dates, but some base <strong>R</strong> packages will also work). Save this in a new tibble. <strong>We will use this tibble with only the 2025 years from here on out</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cbbga5 <span class="ot">=</span> <span class="fu">mutate</span>(cbbga4, <span class="at">numDate =</span> <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(cbbga4<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cbbga6 <span class="ot">=</span> <span class="fu">filter</span>(cbbga5, ((numDate <span class="sc">&gt;=</span> <span class="dv">20088</span>) <span class="sc">&amp;</span> (numDate <span class="sc">&lt;=</span> <span class="dv">20452</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-h-4-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-h-4-points">Part h (4 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-h-4-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Write a function that will filter the tibble to only games played by a
+ given team. Demonstrate your function by displaying games played by SUU
+ in 2025.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bbTeam <span class="ot">=</span> <span class="cf">function</span>(data, team){</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">filter</span>(data, ((Home <span class="sc">==</span> team) <span class="sc">|</span> (Away <span class="sc">==</span> team))))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>cbbga7 <span class="ot">=</span> <span class="fu">bbTeam</span>(cbbga6,<span class="st">"Southern Utah"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-i-7-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-i-7-points">Part i (7 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-i-7-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Use <code>summarize()</code> to extract SUU’s win/loss record and winning percentage for their 2025 games. Hint: using the <code>case_when()</code> function inside of a <code>mutate()</code>
+ function to create a new variable that indicates whether SUU won or 
+lost is helpful. You can verify on the Internet that SUU had 4 wins and 
+10 losses in 2025, so if your code retruns those values, you did it 
+correctly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cbbga8 <span class="ot">=</span> <span class="fu">mutate</span>(cbbga7, <span class="at">SUU_WIN =</span> (((Home <span class="sc">==</span> <span class="st">"Southern Utah"</span>) <span class="sc">&amp;</span> (Difference <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">|</span> ((Away <span class="sc">==</span> <span class="st">"Southern Utah"</span>) <span class="sc">&amp;</span> (Difference <span class="sc">&lt;</span> <span class="dv">0</span>))))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>cbbga9 <span class="ot">=</span> <span class="fu">group_by</span>(cbbga8, SUU_WIN)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>SUU_summary <span class="ot">=</span> <span class="fu">summarize</span>(cbbga9, <span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>winLoss <span class="ot">=</span> SUU_summary<span class="sc">$</span>count[<span class="dv">2</span>] <span class="sc">/</span> (SUU_summary<span class="sc">$</span>count[<span class="dv">1</span>]<span class="sc">+</span>SUU_summary<span class="sc">$</span>count[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-j-7-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-j-7-points">Part j (7 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-j-7-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Generalize this by writing a function that will do this for a given 
+team, and create a tibble with this information for all teams. Arrange 
+this tibble first by winning percentage (descending) and by team 
+(alphabetically) if there are any ties when it comes to winning 
+percentage. A <code>for</code> loop and the <code>add_row()</code> function may be useful here.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bbWins <span class="ot">=</span> <span class="cf">function</span>(data, team){</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  teamGames <span class="ot">=</span> <span class="fu">bbTeam</span>(data, team)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  teamGames2 <span class="ot">=</span> <span class="fu">mutate</span>(teamGames, <span class="at">WIN =</span> (((Home <span class="sc">==</span> team) <span class="sc">&amp;</span> (Difference <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">|</span> ((Away <span class="sc">==</span> team) <span class="sc">&amp;</span> (Difference <span class="sc">&lt;</span> <span class="dv">0</span>))))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  teamGames3 <span class="ot">=</span> <span class="fu">group_by</span>(teamGames2, WIN)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  teamSummary <span class="ot">=</span> <span class="fu">summarize</span>(teamGames3, <span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span> (<span class="fu">is.na</span>(teamSummary<span class="sc">$</span>count[<span class="dv">2</span>]))){</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    winLoss <span class="ot">=</span> teamSummary<span class="sc">$</span>count[<span class="dv">2</span>] <span class="sc">/</span> (teamSummary<span class="sc">$</span>count[<span class="dv">1</span>]<span class="sc">+</span>teamSummary<span class="sc">$</span>count[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">0</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (teamSummary<span class="sc">$</span>WIN[<span class="dv">1</span>] <span class="sc">==</span> <span class="cn">TRUE</span>){</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      winLoss <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>{</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>      winLoss <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(winLoss)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>teams <span class="ot">=</span> <span class="fu">group_by</span>(cbbga6, Home)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>teamSummary <span class="ot">=</span> <span class="fu">summarize</span>(teams)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>teams2 <span class="ot">=</span> teamSummary<span class="sc">$</span>Home</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>teamData <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Team =</span> <span class="fu">as.character</span>(), <span class="at">W_L =</span> <span class="fu">as.numeric</span>())</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (team <span class="cf">in</span> teams2){</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  WLRatio <span class="ot">=</span> <span class="fu">bbWins</span>(cbbga6, team)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  teamData <span class="ot">=</span> <span class="fu">add_row</span>(teamData, <span class="at">Team =</span> team, <span class="at">W_L =</span> WLRatio)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>teamData2 <span class="ot">=</span> <span class="fu">arrange</span>(teamData, <span class="fu">desc</span>(W_L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-k-5-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-k-5-points">Part k (5 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-k-5-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>With only the 2025 games, use the <code>gghist()</code> you wrote in 
+Problem 1 on the score differences variable you created in part 
+c.&nbsp;Add appropriate labels and a title to your graph. Also, use the <code>#| fig-width:</code>, <code>#| fig-height:</code>, <code>#| out-width:</code>, and <code>#| fig-align:</code>
+ code chunk options to center the figure and then to adjust your figure 
+to a size you like. Play around with different sizes to see what those 
+options adjust.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogramer</span>(cbbga6<span class="sc">$</span>Difference,<span class="st">"Point difference"</span>,<span class="st">"Frequency"</span>, <span class="st">"Histogram of basketball point differences"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="MATH%203190%20Homework%201_files/basket_ball_Hist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="part-l-9-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-l-9-points">Part l (9 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-l-9-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Filter the tibble with all 2025 games to only include Utah Tech or 
+Southern Utah, then crate a tibble or data frame where each row is a 
+game played by either team that has one column indicating the school, 
+Utah Tech or Southern Utah, and a second column indicating the number of
+ points that team played, regardless of whether the team was home or 
+away. Then use your <code>ggbox()</code> function to create a side-by-side boxplot of number of points scored in all 2025 games for each team.</p>
+<p>Note, this is a little challenging. The most straightforward way to do this is to use the <code>pivot_longer()</code> function with <code>cols =</code>
+ the names of the two columns that have the away and the home teams (the
+ names of these columns should not be in quotes, but they should be in a
+ vector <code>c()</code>). Try to do this yourself first, but using AI for some help is fine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>utahTeams <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Team =</span> <span class="fu">as.character</span>(), <span class="at">Points =</span> <span class="fu">as.numeric</span>())</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>teams3 <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Southern Utah"</span>, <span class="st">"Utah Tech"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (team <span class="cf">in</span> teams3){</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  games <span class="ot">=</span> <span class="fu">bbTeam</span>(cbbga6,team)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  home <span class="ot">=</span> <span class="fu">filter</span>(games, Home <span class="sc">==</span> team)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  away <span class="ot">=</span> <span class="fu">filter</span>(games, Away <span class="sc">==</span> team)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  homePoints <span class="ot">=</span> home<span class="sc">$</span>HomeScore</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  AwayPoints <span class="ot">=</span> away<span class="sc">$</span>AwayScore</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  points <span class="ot">=</span> <span class="fu">c</span>(homePoints, AwayPoints)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (pointsScored <span class="cf">in</span> points){</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    utahTeams <span class="ot">=</span> <span class="fu">add_row</span>(utahTeams, <span class="at">Team =</span> team, <span class="at">Points =</span> pointsScored)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 10</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "70%"</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: "center"</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(utahTeams<span class="sc">$</span>Points, utahTeams<span class="sc">$</span>Team,<span class="st">"Teams"</span>,<span class="st">"Points"</span>, <span class="st">"Boxplots of basketball points by teams"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MATH%203190%20Homework%201_files/basket_ball_box-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="part-m-5-points" class="level3">
+<h3 class="anchored" data-anchor-id="part-m-5-points">Part m (5 points)<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#part-m-5-points" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Create one more appropriate graphs for the 2025 basketball data. This graph could be anything you’d like as long as you use <code>ggplot2</code>, it shows something meaningful, and it is not the same as the graphs you made in parts k or l.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 10</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "70%"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: "center"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">histogramer</span>(cbbga6<span class="sc">$</span>HomeScore,<span class="st">"Points by Home Team"</span>,<span class="st">"Frequency"</span>, <span class="st">"Histogram of Points Scored by Home Team"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MATH%203190%20Homework%201_files/basket_ball_Hist2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 10</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "70%"</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: "center"</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">histogramer</span>(cbbga6<span class="sc">$</span>AwayScore,<span class="st">"Points by Away Team"</span>,<span class="st">"Frequency"</span>, <span class="st">"Histogram of Points Scored by Away Team"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MATH%203190%20Homework%201_files/basket_ball_Hist2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="problem-3-15-points" class="level1">
+<h1>Problem 3 (15 points)</h1>
+<p>Repeat parts b-e and g of Problem 2 using Python in Quarto. First, 
+pass the original object that you read in from the website to Python 
+without any changes to it (you do not need to read the file from the web
+ in Python, but you can if you’d like) and then use <code>pandas</code> (or <code>polars</code>
+ if you’d like) to rename the columns as indicated in part b, add the 
+columns specified in part c, arrange the data as in part d, drop the 
+“garbage” column as in part e, and filter it down as in part g. The <code>pandas</code> functions <code>rename</code>, <code>assign</code> (instead of <code>mutate</code>), <code>drop</code> (instead of <code>select</code>) and <code>str.contains</code>
+ (used to select the right rows) will be useful here. Be sure to follow 
+the guide in Notes 3 to properly install Python, install the <code>pandas</code> library and to load it in <strong>R</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#these steps are to install python into RStudio and are only useful to execute once.</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("reticulate")</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">#library(reticulate)</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#install_python("3.14.2")</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">#py_install(packages = "pandas")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>bball <span class="op">=</span> r.cbbga</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#rename columns</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>bball2 <span class="op">=</span> bball.rename(columns <span class="op">=</span> {<span class="st">"X."</span> : <span class="st">"unknown1"</span>, <span class="st">"X.."</span> : <span class="st">"unknown2"</span>})</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co">#make new column</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>bball2[<span class="st">"Difference"</span>] <span class="op">=</span> bball2[<span class="st">"HomeScore"</span>] <span class="op">-</span> bball2[<span class="st">"AwayScore"</span>]</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">#sort data</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>bball3 <span class="op">=</span> bball2.sort_values(by<span class="op">=</span> <span class="st">"Home"</span>, ascending <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">#select important vars</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>bball4 <span class="op">=</span> bball3[[<span class="st">"Date"</span>,<span class="st">"Home"</span>,<span class="st">"HomeScore"</span>,<span class="st">"Away"</span>,<span class="st">"AwayScore"</span>,<span class="st">"Difference"</span>]]</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co">#filter for 2025</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>bball5 <span class="op">=</span> bball4[(bball4[<span class="st">"Date"</span>].<span class="bu">str</span>)[<span class="dv">6</span>:<span class="dv">10</span>] <span class="op">==</span> <span class="st">"2025"</span>]</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co">#everything should be in order</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>bball5.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Home</th>
+<th data-quarto-table-cell-role="th">HomeScore</th>
+<th data-quarto-table-cell-role="th">Away</th>
+<th data-quarto-table-cell-role="th">AwayScore</th>
+<th data-quarto-table-cell-role="th">Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>11/03/2025</td>
+<td>Abilene Christian</td>
+<td>92</td>
+<td>McMurry</td>
+<td>55</td>
+<td>37</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">240</td>
+<td>11/06/2025</td>
+<td>Abilene Christian</td>
+<td>73</td>
+<td>Nebraska Omaha</td>
+<td>71</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1243</td>
+<td>11/25/2025</td>
+<td>Abilene Christian</td>
+<td>58</td>
+<td>William &amp; Mary</td>
+<td>92</td>
+<td>-34</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1413</td>
+<td>11/28/2025</td>
+<td>Abilene Christian</td>
+<td>87</td>
+<td>Jarvis Christian</td>
+<td>55</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">502</td>
+<td>11/11/2025</td>
+<td>Abilene Christian</td>
+<td>104</td>
+<td>Southwestern Adventist</td>
+<td>63</td>
+<td>41</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+
+<script>window.backupDefine = window.define; window.define = undefined;</script>
+<script type="text/javascript" src="MATH%203190%20Homework%201_files/quarto-preview.js"></script>
+<script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+<script type="text/javascript">
+  const options = {
+    origin: "",
+    search: "",
+    inputFile: "C:\Users\Samuel\Downloads\Homework 1.qmd",
+    isPresentation: false
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    window.QuartoPreview.init(options);
+  });
+</script>
+<div><div dir="ltr" class="fui-FluentProvider fui-FluentProviderr0 ___jdtuxv0 f19n0e5 fxugw4r f1o700av fk6fouc fkhj508 figsok6 f1i3iumi"></div></div><i tabindex="0" role="none" data-tabster-dummy="" aria-hidden="true" style="position: fixed; height: 1px; width: 1px; opacity: 0.001; z-index: -1; content-visibility: hidden; top: 0px; left: 0px;"></i></body></html>
