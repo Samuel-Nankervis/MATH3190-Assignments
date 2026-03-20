@@ -1,0 +1,467 @@
+---
+title: "**MATH 3190 Homework 6**"
+subtitle: |
+  Due March 19, 2026\
+  Focus: Notes 7 Part 2\
+  Total Points: 90 + 10 (Self-Critique Comment and Uploading to GitHub) = 100
+format: 
+  html:
+    embed-resources: true # Keep this so the html file is easily shareable.
+urlcolor: blue
+execute: # Will set these as the default for all code chunks
+  eval: true
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Note that your homework should be completed in Quarto. You can just add your answers and code to this document in the appropriate part. The file should be rendered as an html document or pdf document (html is quicker to render and you will need an installation of LaTeX to render as a pdf). You will "turn in" this homework by uploading the files, the .qmd and output file, to your GitHub `Math_3190_Assignment` repository in the `Homework/Homework_6` directory. Make sure all supporting files (if there are any) are in this directory as well. You should use `git` and `Unix` commands in a terminal for this (i.e. don't manually upload files to GitHub). In addition, you will submit just your html or pdf file on Canvas to unlock the solutions.
+
+Don't forget to also put a [self-critique comment]{.underline} on Canvas indicating what you did correctly and incorrectly and include any questions you may have about the assignment after submitting the assignment and thoroughly looking through the solutions.
+
+
+
+# Problem 1 (28 points)
+
+An automobile consulting company wants to understand the factors on which the pricing of cars depends. The dataset `car_price_prediction` in the `math3190package` (and also found in the GitHub data folder) has information on the sales of 4340 vehicles. 
+
+```{r}
+#| label: Load data
+library(math3190package)
+library(glmnet) |> suppressPackageStartupMessages()
+library(glmnetUtils) |> suppressPackageStartupMessages()
+library(faraway) |> suppressPackageStartupMessages()
+library(caret)
+
+```
+
+### Part a (3 points)
+Create new variables in the dataset by taking the natural log of selling price, year, and km_driven. This will help linearize the association between variables. Then fit a linear model for predicting the log of selling price using all other variables except "name", "year", "selling_price", and "km_driven" (the logged variables should be used instread of those last three). Also, there is only one vehicle with a fuel type of "Electric". Remove that vehicle from the dataset.
+
+```{r}
+#| label: log data
+
+car_price_prediction1 = mutate(car_price_prediction, logSell = log(selling_price), logYear = log(year), logKmDriven = log(km_driven))
+car_price_prediction2 = filter(car_price_prediction1, fuel != "Electric")
+
+carMod = lm(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2)
+summary(carMod)
+
+```
+
+### Part b (5 points)
+Now fit some LASSO models for predicting log selling price using all but the "name" variable. Try the following values for the regularization parameter: $\lambda=0,\ 0.01,\ 0.1,$ and $1$ and comment on how the coefficients of the model change. 
+
+Note: when $\lambda=0$, the LASSO coefficients should equal the OLS model coefficients. However, they will actually be a bit off here. That is because the `glmnet()` function has a `thresh` argument that sets a threshold for convergence. It is, by default, set to `1e-07`. To make the parameters match, you can change that to `thresh = 1e-14` instead. This is not necessary, though. 
+
+```{r}
+#| label: LASSO Models
+
+lasso <- glmnet(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2, alpha = 1)
+
+coef(lasso, s = 0)
+coef(lasso, s = 0.01)
+coef(lasso, s = 0.1)
+coef(lasso, s = 1)
+
+```
+
+The higher the Lambda, the more variables will get dropped from the model. 0 drops no variables while 1 drops all variables. The variables also approach zero as the lambda value increases.
+
+### Part c (4 points)
+Now fit some ridge regression models for predicting log selling price using all but name. Try the following values for the regularization parameter: $\lambda=0,\ 0.01,\ 0.1,$ and $1$ and comment on how the coefficients of the model change. 
+
+```{r}
+#| label: Ridge Models
+
+ridge <- glmnet(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2, alpha = 0)
+
+coef(ridge, s = 0)
+coef(ridge, s = 0.01)
+coef(ridge, s = 0.1)
+coef(ridge, s = 1)
+
+```
+
+None of the coeficents are pushed to zero, but as lambda increases, the coefficients increase in magnitude.
+
+### Part d (4 points)
+Now fit some elastic net regression models for predicting log price using all but name. Try the following values for the regularization parameter: $\lambda=0,\ 0.01,\ 0.1,$ and $1$ for $\alpha=1/3$ and then comment on how the coefficients of the model change for each $\alpha$ from parts (b), (c), and (d). 
+
+```{r}
+#| label: elastic net Models
+
+net <- glmnet(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2, alpha = (1/3))
+
+coef(net, s = 0)
+coef(net, s = 0.01)
+coef(net, s = 0.1)
+coef(net, s = 1)
+
+```
+
+As lambda increases, more variables are reduced to zero, but never all. Even at lambda = 0, some variables are reduced to zero. As lambda increases the variables converge towards zero.
+
+### Part e (4 points)
+Use the `cv.glmnet()` to find the "optimal" $\lambda$ value (let's use the "lambda.1se") for LASSO ($\alpha=1$), ridge ($\alpha=0$), and elastic net (let's again use $\alpha = 1/3$) and then fit models using the `glmnet()` function for all three using their respective "best" $\lambda$. **Set a seed** before running the `cv.glmnet()` each time. 
+
+Compare each model's variables and coefficients. 
+
+```{r}
+#| label: Optimal Lambda
+set.seed(9000)
+
+bestLasso <- cv.glmnet(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2, alpha = 1)
+bestLasso$lambda.1se
+
+bestRidge <- cv.glmnet(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2, alpha = 0)
+bestRidge$lambda.1se
+
+bestNet <- cv.glmnet(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2, alpha = (1/3))
+bestNet$lambda.1se
+
+```
+
+### Part f (8 points)
+Use bootstrapping with at least 1000 samples to estimate the standard errors of the coefficients of the ridge regression model. For each bootstrap sample, run the `cv.glmnet()` function to find the best $\lambda$ and fit a model using that optimized $\lambda$. Use the "lambda.1se" for this. This can take a few minutes to run. Then compare these bootstrapped standard errors to the standard errors for the OLS model you fit in part a. Are they larger or smaller? Does this make sense? 
+
+```{r}
+#| label: Bootstap coeficents
+#| cashe: True
+
+nboot <- 1000
+coefs <- matrix(rep(0, nboot*7), nrow = nboot)
+for(i in 1:nboot) {
+  index <- sample(1:nrow(car_price_prediction2), nrow(car_price_prediction2), replace = T)
+  mod <- cv.glmnet(logSell ~ logYear + logKmDriven + fuel + seller_type + transmission + owner, data = car_price_prediction2[index,], alpha = 0)
+  coefs[i,] <- coef(mod, s = "lambda.min")[1:7]
+}
+c(sd(coefs[,1]),sd(coefs[,2]),sd(coefs[,3]),sd(coefs[,4]),sd(coefs[,5]), sd(coefs[,6]), sd(coefs[,7]))
+
+```
+
+```{r}
+#| label: summary ols
+summary(carMod)
+```
+
+The values seem about identical to the bootstrapped coefficients. Some are marginally higher and some are marginally lower. This makes sense to me because the sampling technique is identical in OLS and ridge regression aside from the penalty term in ridge regression. 
+
+# Problem 2 (21 points)
+
+In 1990, sixty districts in California were randomly selected with the goal of predicting the median house value for the district based on the district location (longitude and latitude), the median house age in the block group, the total number of rooms in the homes, the total number of bedrooms, the population in the district, the number of households, and the median income (in \$10,000). The data are already in the .qmd file.
+
+```{r}
+#| label: house_data
+#| echo: false
+library(tidyverse) |> suppressPackageStartupMessages()
+housing_train <- tibble(
+  house_value = c(156100, 145300, 150000, 50600, 176300, 178500, 123800,
+                  173900, 422700, 164400, 42100, 157800, 162900, 90500,
+                  191800, 128100, 109700, 206700, 132200, 248200, 336900,
+                  58000, 271500, 259500, 69400, 132700, 461200, 245000,
+                  218000, 311700, 361600, 250000, 113900, 103600, 81900,
+                  351900, 114100, 500001, 153300, 466700),
+  longitude = c(-121.08, -121.27, -117.7, -119.29, -118.09, -117.67, 
+                -120.76, -118.16, -118.39, -123.1, -117.66, -118.16, 
+                -120.98, -120.99, -122.69, -118.18, -122.27, -122.11, 
+                -121.99, -118.02, -118.02, -120.94, -118.6, -121.95, 
+                -120.62, -118.18, -122.13, -117.93, -121.85, -118.49, 
+                -122.44, -121.32, -117.07, -121.83, -121.43, -122.11, 
+                -118.27, -118.4, -120.28, -117.16),
+  latitude = c(38.95, 38.7, 34.06, 36.34, 33.9, 34.02, 38.47, 34.02,
+               33.89, 38.79, 35.63, 33.97, 38.99, 37.67, 38.35, 33.91,
+               37.83, 37.99, 38.34, 33.74, 33.73, 40.14, 34.26, 37.96, 
+               36.99, 33.8, 37.4, 33.94, 36.6, 34.18, 37.76, 37.67, 32.74, 
+               38, 38.53, 37.41, 34.01, 34.41, 37.9, 32.74),
+  age = c(18, 16, 25, 28, 33, 16, 17, 44, 38, 20, 33, 23, 17, 28, 16, 41, 
+          51, 16, 16, 26, 24, 31, 18, 18, 32, 42, 29, 30, 21, 31, 52, 21, 
+          38, 15, 36, 27, 47, 22, 17, 43),
+  rooms = c(1931, 3747, 2054, 1440, 3326, 3042, 1521, 1218, 1851, 3109, 
+            2579, 1516, 3403, 1768, 1689, 1260, 2665, 3913, 1470, 3842, 
+            6393, 3127, 6154, 2739, 2455, 2301, 6027, 2658, 2381, 3073, 
+            2959, 1494, 1901, 6365, 2430, 5110, 921, 4443, 1047, 1437),
+  bedrooms = c(380, 586, 609, 431, 720, 524, 309, 374, 332, 712, 564, 
+               457, 661, 423, 254, 299, 574, 710, 261, 609, 1141, 664, 
+               1070, 393, 508, 621, 1195, 382, 701, 674, 683, 271, 392, 
+               1646, 426, 1599, 264, 560, 212, 406),
+  population = c(1271, 1817, 2271, 2178, 2533, 1516, 607, 1175, 750, 1643,
+                 1155, 1977, 1540, 1066, 921, 1535, 1258, 1782, 748, 1961,
+                 2743, 1345, 3010, 1072, 1344, 2114, 2687, 1135, 1264, 1486,
+                 1145, 781, 1099, 3838, 1199, 2764, 881, 1573, 530, 692),
+  households = c(377, 590, 564, 440, 689, 475, 240, 342, 314, 638, 431, 435,
+                 622, 392, 270, 322, 536, 676, 256, 595, 1057, 580, 1034, 374,
+                 492, 561, 1171, 392, 659, 684, 666, 255, 406, 1458, 437,
+                 1482, 221, 496, 196, 379)
+)
+
+housing_test <- tibble(
+  house_value = c(214900, 44000, 194400, 128700, 435000, 179400, 129300,
+                  312300, 76300, 225800, 295500, 162500, 340800, 93800,
+                  155000, 283200, 133400, 248200, 265000, 57500),
+  longitude = c(-119.25, -121.93, -122.31, -121.27, -118.42, -118.71, 
+                -117.31, -122.04, -119.69, -117.88, -117.25, -121.48, 
+                -122.49, -121.49, -116.18, -119.19, -118.23, -118.35, 
+                -118.35, -124.15),
+  latitude = c(34.26, 41.86, 38.27, 38.67, 33.85, 34.27, 34.02, 37.04, 
+               36.79, 33.7, 32.8, 38.55, 37.74, 39.52, 33.69, 34.3, 33.89,
+               34.28, 33.91, 40.88),
+  age = c(30, 28, 34, 15, 43, 26, 18, 17, 15, 18, 26, 52, 48, 25, 17, 
+          25, 16, 30, 31, 33),
+  rooms = c(2948, 4225, 1748, 1701, 1584, 990, 1634, 4977, 2524, 2135, 
+            2442, 2037, 1186, 848, 89, 2197, 5003, 3214, 2583, 2235),
+  bedrooms = c(827, 835, 284, 346, 477, 223, 274, 994, 451, 373, 659, 
+               358, 213, 153, 19, 320, 1180, 513, 663, 506),
+  population = c(1635, 1908, 783, 723, 799, 719, 899, 1987, 1207, 1464, 
+                 1134, 811, 487, 436, 79, 934, 4145, 1700, 1675, 1165),
+  households = c(750, 686, 303, 352, 433, 232, 285, 947, 424, 405, 624, 
+                 375, 207, 155, 21, 330, 1159, 533, 612, 441)
+)
+```
+
+### Part a (2 points)
+Using the training set, fit a linear regression model predicting house value from the other variables. 
+
+```{r}
+#| label: olsmod
+houseMod = lm(house_value ~ ., data = housing_train)
+summary(houseMod)
+```
+
+### Part b (4 points)
+Fit a ridge regression using `cv.glmnet()` to choose the optimal $\lambda$ using "lambda.min". Set the seed before using`cv.glmnet()`. 
+
+```{r}
+#| label: optimize ridge
+set.seed(9000)
+optimal = cv.glmnet(house_value ~ ., data = housing_train, alpha = 0)
+optimal$lambda.min
+
+```
+
+### Part c (5 points)
+Compute the sum of squared errors (that is $\sum_{i=1}^n (y_i-\hat{y}_i)^2$ for both the OLS model and the ridge regression model for the **training set**. The `predict()` functions will be useful here. Compare the results and comment on why the OLS performs better here (the OLS should indeed perform better).
+
+```{r}
+#| label: squared errors on train
+sumOLSError = 0
+for (i in nrow(housing_train)){
+  sumOLSError =+ (housing_train[i,1]-predict(houseMod, housing_train[i,]))^2
+}
+sumOLSError
+
+sumRidgeError = 0
+for (i in nrow(housing_train)){
+  sumRidgeError =+ (housing_train[i,1]-predict(optimal, housing_train[i,]))^2
+}
+sumRidgeError
+
+```
+
+the sum square errors is higher for the Ridge regression model with optimal lambda. Implying that the OLS model is better at predictions. This is because OLS has a tendency to over fit whereas Ridge regression typically avoids this, so ridge regression will be worse on the training set.
+
+### Part d (3 points)
+Compute the sum of squared errors (that is $\sum_{i=1}^n (y_i-\hat{y}_i)^2$ for both the OLS model and the ridge regression model for the **testing set**. Remember to use the exact models you fit to the training sets. The `predict()` functions will be useful here. Compare the results and comment on why the ridge regression performs better here.
+
+```{r}
+#| label: squared errors on test
+sumOLSErrorT = 0
+for (i in nrow(housing_test)){
+  sumOLSErrorT =+ (housing_test[i,1]-predict(houseMod, housing_test[i,]))^2
+}
+sumOLSErrorT
+
+sumRidgeErrorT = 0
+for (i in nrow(housing_test)){
+  sumRidgeErrorT =+ (housing_test[i,1]-predict(optimal, housing_test[i,]))^2
+}
+sumRidgeErrorT
+```
+The Ridge regression performs better here because it over fits less and will perform better on a test set.
+
+### Part e (7 points)
+Use the `train()` function in the `caret()` package to find the optimal $\alpha, \lambda$ pair in this situation (using the training set and **10-fold cross validation**). For $\lambda$, search for values between 0 and 10000 by 100 and for $\alpha$, search for values between 0 and 1 by 0.05. Then fit a model using the optimal $\alpha$ and $\lambda$ using `glmnet()` and compare the sum of squared errors using this optimized model on the test set to the two models in part (d). Set a seed before running the `train()` function. 
+
+```{r}
+#| label: optimal alpha lambda
+set.seed(9000)
+
+search_grid <- expand.grid(alpha = seq(0, 1, by = 0.05),lambda = seq(0, 10000, by = 100))
+
+optimalAL = train(house_value ~ ., data = housing_train, method = "glmnet",tuneGrid = search_grid, trControl = trainControl(method = "cv", number = 10)
+)
+
+optimalAL$bestTune
+
+sumALErrorT = 0
+for (i in nrow(housing_test)){
+  sumALErrorT =+ (housing_test[i,1]-predict(optimalAL, housing_test[i,]))^2
+}
+sumALErrorT
+```
+
+The ordinary least squares model outperforms both the ridge regression model and elastic net models. 
+
+# Problem 3 (41 points)
+In the `AER` package is the data set "ShipAccidents". You can install that package and load that data using `data(ShipAccidents)`. Type `?ShipAccidents` to read about that data set. 
+
+```{r}
+#| label: install and load data
+#install.packages("AER")
+library(AER)
+data(ShipAccidents)
+```
+
+### Part a (4 points)
+Load in the data, remove the rows for which service is equal to 0, and then fit a Poisson regression model for predicting incidents from all other variables using the ShipAccidents data. Don't forget to put `family = "poisson"` in the `glm()` function. Briefly explain why it makes sense to do Poisson regression here.
+
+```{r}
+#| label: poission model
+
+ships = filter(ShipAccidents, service != 0)
+
+shipMod = glm(incidents ~ ., data = ships, family = "poisson")
+
+summary(shipMod)
+```
+
+Since the number of incidents cannot increment by less than one, using a Poisson distribution makes more sense for this model.
+
+### Part b (5 points)
+Using that model, interpret the slope of "service" and the slope of "construction1970-74" in original (not log) units. 
+
+The predicted change in the mean of the Poisson distribution when aggregate months of service increases by one month is $$e^{1.446}$$
+
+The predicted change in the mean of the Poisson distribution when the ship was constructed between 1970 and 1974 instead of 1960 and 1964 is $$e^{.00006421}$$
+
+### Part c (6 points)
+Make a residual plot of the Pearson residuals vs the linear predictors and make a QQ plot of the Pearson residuals. Comment on what these imply about the fit. 
+
+```{r}
+#| label: QQ and resids
+p_resids = residuals(shipMod, type = "pearson")
+resid_df = data.frame(p_resids,
+linear_pred = shipMod$linear.predictors)
+
+
+ggplot(resid_df, aes(x = linear_pred, y = p_resids)) +
+geom_point(size = 0.5) +
+labs(x = "Linear Predictors", y = "Pearson Residuals") +
+theme_bw()
+
+ggplot(resid_df, aes(sample = p_resids)) +
+geom_qq() +
+geom_qq_line(linewidth = 1) +
+labs(x = "Theoretical Quantiles",
+y = "Sample Quantiles") +
+theme_bw()
+```
+
+The residuals seem to have a mostly random scatter. 
+
+The QQ plot seems right tailed implying that the residuals may not be normally distribuited
+
+### Part d (5 points)
+Conduct a deviance goodness-of-fit (GOF) test for a lack of fit here. Type out the null and alternative hypotheses, report the test statistic, give the p-value, and provide an interpretation. 
+
+```{r}
+#| label: gof test
+
+1 - pchisq(shipMod$deviance, df = shipMod$df.residual)
+
+testStat = 0
+for (i in nrow(ships)){
+  yi = ships[i,5]
+  yh = predict(shipMod, ships[i,])
+  testStat =+ yi*log((yi/yh))-(yi-yh)
+}
+testStat = testStat*2
+testStat
+
+```
+
+$$H_0$$ : The model is correctly specified.
+$$H_A$$ : The model is incorrectly specified.
+
+In this case since our p-value is low, we reject the null hypothesis that the model is correctly specified and therefore we have evidence the model is incorrectly specified. 
+
+### Part e (4 points)
+Is there evidence that this model has overdispersion? Explain. 
+
+We can check this by looking at the dispersion:
+
+```{r}
+#| label: dispersion
+dispersion = sum(residuals(shipMod, type = "pearson")^2)/(nrow(ships)-1-10)
+dispersion
+```
+The dispersion is high, so it would seem that this is the primary issue. 
+
+### Part f (6 points)
+Fit a "quasipoisson" model to these data. Using this model, obtain an approximate 95% confidence interval for the mean response for a ship of type "B" with construction between 1965 and 1969, with operation between 1960 and 1974, and with 2000 aggregate months of service. You can construct this interval using a t critical value with 24 degrees of freedom since the quasipoisson family more closely follows a t distribution than a normal one. Interpret the interval.
+
+```{r}
+#| label: Quazi-Poisson
+shipModQ = glm(formula = incidents ~ ., family = "quasipoisson", data = ships)
+df = data.frame(type = "B", construction = "1965-69", operation = "1960-74", service = 2000)
+
+prediction = predict(shipModQ, newdata = df, se.fit = TRUE, type = "link")
+
+degreesFreedom = 24
+alpha = 0.05
+t = qt(1 - alpha/2, df = degreesFreedom)
+
+lowerLog = prediction$fit - (t * prediction$se.fit)
+upperLog = prediction$fit + (t * prediction$se.fit)
+
+finalPrediction = exp(prediction$fit)
+lowerCI = exp(lowerLog)
+upperCI = exp(upperLog)
+lowerCI
+upperCI
+```
+
+We are 95% confident the true mean number of incidents for a ship of type B constructed in 1965-69 operating from 1960-74 that was with 2000 aggregate months of service is between 3.66 and 19.95 incidents. 
+
+### Part g (5 points)
+Now construct an approximate 95% prediction interval for the number of incidents for the ship described in part f using the `qpois()` function. Interpret the interval. 
+
+```{r}
+#| label: qpois
+
+lambda = exp(predict(shipModQ, newdata = df))
+
+alpha = 0.05
+
+lowerCI = qpois(alpha/2, lambda)
+upperCI = qpois(1 - alpha/2, lambda)
+
+lowerCI
+upperCI
+```
+
+We are 95% confident the true mean number of incidents for a ship of type B constructed in 1965-69 operating from 1960-74 that was with 2000 aggregate months of service is between 3 and 15 incidents. 
+
+### Part h (6 points)
+Suppose we did not catch the fact that this model is overdispersed. Repeat parts f and g using the model fit with the "poisson" family, not "quasipoisson" and using a z interval for the mean response rather than a t interval. Compare your results to parts f and g and comment on what is different. 
+
+```{r}
+#| label: poisson 2
+
+prediction = predict(shipMod, newdata = df, se.fit = TRUE, type = "link")
+
+alpha = 0.05
+z = qnorm(1 - alpha/2)
+
+lowerLog = prediction$fit - (z * prediction$se.fit)
+upperLog = prediction$fit + (z * prediction$se.fit)
+
+finalPrediction = exp(prediction$fit)
+lowerCI = exp(lowerLog)
+upperCI = exp(upperLog)
+lowerCI
+upperCI
+
+```
+We are 95% confident the true mean number of incidents for a ship of type B constructed in 1965-69 operating from 1960-74 that was with 2000 aggregate months of service is between 5.33 and 13.71 incidents. 
+This interval is a lot smaller than the other two intervals, likely because it assumes that the variance is a lot smaller.
