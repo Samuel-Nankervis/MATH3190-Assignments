@@ -1,12 +1,12 @@
 ---
 title: "**MATH 3190 Homework 2**"
 subtitle: |
-  Due February 5, 2026\
-  Focus: Notes 4\
-  Total Points: 65 + 10 (Self-Critique Comment and Uploading to GitHub) = 75
-format: 
+  Due February 12, 2026\
+  Focus: Notes 5\
+  Total Points: 90 + 10 (Self-Critique Comment and Uploading to GitHub) = 100
+format:
   html:
-    embed-resources: true
+    embed-resources: true # Keep this so the html file is easily shareable.
 urlcolor: blue
 execute: # Will set these as the default for all code chunks
   eval: true

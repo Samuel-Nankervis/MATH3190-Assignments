@@ -1,0 +1,303 @@
+---
+title: "**MATH 3190 Homework 1**"
+subtitle: | 
+  Samuel Nankervis
+  Due January 29, 2026\
+  Focus: Notes 1-3\
+  Total Points: 90 + 10 (Self-Critique Comment and Uploading to GitHub) = 100
+format: html # Change this to "html" (without the quotes) to render in html
+urlcolor: blue
+execute: # Will set these as the default for all code chunks
+  eval: true
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Note that your homework should be completed in Quarto. You can just add your answers and code to this document in the appropriate part. The file should be rendered as an html document or pdf document (html is quicker to render and you will need an installation of LaTeX to render as a pdf). You will "turn in" this homework by uploading the files, the .qmd and output file, to your GitHub `Math_3190_Assignment` repository in the `Homework/Homework_1` directory. Make sure all supporting files (if there are any) are in this directory as well. You should use `git` and `Unix` commands in a terminal for this (i.e. don't manually upload files to GitHub). In addition, you will submit just your html or pdf file on Canvas to unlock the solutions. 
+
+Don't forget to also put a [self-critique comment]{.underline} on Canvas indicating what you did correctly and incorrectly and include any questions you may have about the assignment after submitting the assignment and thoroughly looking through the solutions.
+
+
+# Problem 1 (18 points)
+
+In [two different code chunks]{.underline}, write two functions called `gghist` and `ggbox`. The first code chunk is already given below, but you'll need to add the second one. The `gghist` function should create a ggplot histogram of a variable that is given as a vector. The `ggbox` function should create a ggplot box plot when a single numeric vector is given or it should create side-by-side box plots if one numeric and one categorical variables are given. You can check if a vector is numeric with the `is.numeric()` function. Allow the user to indicate whether it should be horizontal or vertical box plots. Make sure you set `echo` and `eval` both to `true` for these code chunks. Also make sure to label the code chunks. 
+
+```{r}
+#| label: gghist
+library(tidyverse)
+histogramer = function(values,x,y,title){
+  #makes a bar chart for the States
+  df = data.frame(values)
+ggplot(df, aes(x = values)) +
+  geom_histogram(color = "black", fill = "orange") +
+  lims(x = c(min(values), max(values))) +
+  labs(x = x, 
+       y = y,
+       title = title) +
+  theme(axis.title = element_text(size = 16),
+        axis.text = element_text(size = 12),
+        plot.title = element_text(size = 18, face = "bold"))
+
+}
+
+histogramer(c(1,1,2,2,3,3,3,3,3,4,4,5,6),"x","Y","title")
+
+```
+
+```{r}
+#| label: ggbox
+
+box = function(values, by,X,Y,Title){
+  df = data.frame(values, by)
+  ggplot(df, aes(x = by, y = values)) +
+    geom_boxplot(color = "black", fill = "white") +
+    labs(x = X, y = Y,title = Title) +
+    scale_fill_brewer() +
+    theme(plot.title = element_text(size = 18, face = "bold"))
+}
+
+box(c(1,2,3,1,2,2,2,2,3,4,5,6.79),c("yellow", "green", "yellow", "green", "yellow", "green", "yellow", "green", "yellow", "green", "yellow", "green"),"x","y","title")
+
+```
+
+# Problem 2 (57 points)
+
+### Part a (6 points)
+Learn about the built-in `read.fwf()` **R** function for use in downloading data from a URL into **R**. The `widths` and `strip.white` options will be especially useful here. Use this function to download the scores for all college basketball games for the 2024-2025 season [http://kenpom.com/cbbga26.txt](http://kenpom.com/cbbga26.txt) and then convert it to a tibble (load the `tidyverse` package first). The second team listed per line is the home team. It is not clear what the numbers, letters, or city names indicate after the second listed score. Notice that this is a "live" file that gets updated every day! So, your tibble size may change if you work on this assignment over the course of several days. That's fine. Give the code you used to download these data in a labeled code chunk.
+
+```{r}
+#| label: read_basket_ball
+
+cbbga = read.fwf("https://kenpom.com/cbbga26.txt", widths = c(10,24,3,24,3,3,24), strip.white = TRUE, col.names = c("Date","Away","AwayScore","Home","HomeScore", "?", "??"))
+
+
+```
+
+
+Now lets practice using our tidy data/tidyverse tools! Using your `cbbga` tibble, try doing the following. In each part, save the object as a new tibble (like `cbbga2`, `cbbga3`, etc) and in each subsequent part, use the tibble you created in the previous part. 
+
+### Part b (2 points)
+Use `rename()` to rename all of your variables to names that make sense. Then print the first six rows of the new tibble using the `head()` function. 
+
+```{r}
+#| label: rename_basket_ball
+#Note, I already did this above but this is how you would rename them.
+colnames(cbbga) = c("Date","Away","AwayScore","Home","HomeScore", "Something 1", "Something 2")
+head(cbbga)
+
+```
+
+### Part c (2 points)
+Use `mutate()` to create a new column that gives the score differences (home team score minus away team score). Then print the first six rows of the new tibble using the `head()` function. 
+
+```{r}
+#| label: mutate_basket_ball
+
+cbbga2 = mutate(cbbga, Difference = HomeScore - AwayScore)
+head(cbbga2)
+
+```
+
+### Part d (2 points)
+Use `arrange()` to sort the data set by the home team alphabetically. Then print the first six rows of the new tibble using the `head()` function. 
+
+```{r}
+#| label: arrange_basket_ball
+cbbga2.5 = arrange(cbbga2, Home)
+head(cbbga2.5)
+
+```
+
+### Part e (2 points)
+Use `select()` to remove the extra variable(s) that had that irrelevant information at the end of each line. Note: you can select every variable except one by using `!`. Then print the first six rows of the new tibble using the `head()` function. 
+
+```{r}
+#| label: select_basket_ball
+
+cbbga3 = select(cbbga2.5, Date, Home, HomeScore, Away, AwayScore, Difference)
+head(cbbga3)
+
+```
+
+### Part f (3 points)
+Put parts a-e all together in one piping expression (with 5 pipes) and save this as a new object in **R**.
+
+```{r}
+#| label: all_basket_ball
+#Hot take, I think pipes look ugly and are super unreadable. 
+cbbga4 = read.fwf("https://kenpom.com/cbbga26.txt", widths = c(10,24,3,24,3,3,24), strip.white = TRUE, col.names = c("Date","Away","AwayScore","Home","HomeScore", "?", "??")) %>%
+  mutate(Difference = HomeScore - AwayScore) %>%
+    arrange(Home) %>%
+      select(Date, Home, HomeScore, Away, AwayScore, Difference)
+head(cbbga4)
+
+```
+
+### Part g (3 points)
+Use `filter()` to reduce the data down to only games played in 2025 (you could use the `lubridate` package for this, since it specializes in dealing with dates, but some base **R** packages will also work). Save this in a new tibble. **We will use this tibble with only the 2025 years from here on out**. 
+
+```{r}
+#| label: 2025_basket_ball
+cbbga5 = mutate(cbbga4, numDate = as.numeric(as.Date(cbbga4$Date, format = "%m/%d/%Y")))
+cbbga6 = filter(cbbga5, ((numDate >= 20088) & (numDate <= 20452)))
+
+```
+
+### Part h (4 points)
+Write a function that will filter the tibble to only games played by a given team. Demonstrate your function by displaying games played by SUU in 2025.
+
+```{r}
+#| label: SUU_basket_ball
+bbTeam = function(data, team){
+  return(filter(data, ((Home == team) | (Away == team))))
+}
+
+cbbga7 = bbTeam(cbbga6,"Southern Utah")
+```
+
+### Part i (7 points)
+Use `summarize()` to extract SUU's win/loss record and winning percentage for their 2025 games. Hint: using the `case_when()` function inside of a `mutate()` function to create a new variable that indicates whether SUU won or lost is helpful. You can verify on the Internet that SUU had 4 wins and 10 losses in 2025, so if your code retruns those values, you did it correctly. 
+
+```{r}
+#| label: SUU_basket_ball_W_L
+
+cbbga8 = mutate(cbbga7, SUU_WIN = (((Home == "Southern Utah") & (Difference > 0)) | ((Away == "Southern Utah") & (Difference < 0))))
+
+
+cbbga9 = group_by(cbbga8, SUU_WIN)
+SUU_summary = summarize(cbbga9, count = n())
+winLoss = SUU_summary$count[2] / (SUU_summary$count[1]+SUU_summary$count[2])
+```
+
+### Part j (7 points)
+Generalize this by writing a function that will do this for a given team, and create a tibble with this information for all teams. Arrange this tibble first by winning percentage (descending) and by team (alphabetically) if there are any ties when it comes to winning percentage. A `for` loop and the `add_row()` function may be useful here.
+
+```{r}
+#| label: basket_ball_W_L
+bbWins = function(data, team){
+  teamGames = bbTeam(data, team)
+  teamGames2 = mutate(teamGames, WIN = (((Home == team) & (Difference > 0)) | ((Away == team) & (Difference < 0))))
+  teamGames3 = group_by(teamGames2, WIN)
+  teamSummary = summarize(teamGames3, count = n())
+  if (! (is.na(teamSummary$count[2]))){
+    winLoss = teamSummary$count[2] / (teamSummary$count[1]+teamSummary$count[2]+0)
+  }
+  else{
+    if (teamSummary$WIN[1] == TRUE){
+      winLoss = 1
+    }
+    else{
+      winLoss = 0
+    }
+  }
+  return(winLoss)
+}
+
+teams = group_by(cbbga6, Home)
+teamSummary = summarize(teams)
+teams2 = teamSummary$Home
+teamData = data.frame(Team = as.character(), W_L = as.numeric())
+for (team in teams2){
+  WLRatio = bbWins(cbbga6, team)
+  teamData = add_row(teamData, Team = team, W_L = WLRatio)
+}
+
+teamData2 = arrange(teamData, desc(W_L))
+
+
+```
+
+### Part k (5 points)
+With only the 2025 games, use the `gghist()` you wrote in Problem 1 on the score differences variable you created in part c. Add appropriate labels and a title to your graph. Also, use the `#| fig-width:`, `#| fig-height:`, `#| out-width:`, and `#| fig-align:` code chunk options to center the figure and then to adjust your figure to a size you like. Play around with different sizes to see what those options adjust. 
+
+```{r}
+#| label: basket_ball_Hist
+#| fig-width: 10
+#| fig-height: 10
+#| out-width: "70%"
+#| fig-align: "center"
+histogramer(cbbga6$Difference,"Point difference","Frequency", "Histogram of basketball point differences")
+
+```
+
+### Part l (9 points)
+Filter the tibble with all 2025 games to only include Utah Tech or Southern Utah, then crate a tibble or data frame where each row is a game played by either team that has one column indicating the school, Utah Tech or Southern Utah, and a second column indicating the number of points that team played, regardless of whether the team was home or away. Then use your `ggbox()` function to create a side-by-side boxplot of number of points scored in all 2025 games for each team.
+
+Note, this is a little challenging. The most straightforward way to do this is to use the `pivot_longer()` function with `cols = ` the names of the two columns that have the away and the home teams (the names of these columns should not be in quotes, but they should be in a vector `c()`). Try to do this yourself first, but using AI for some help is fine. 
+
+
+```{r}
+#| label: basket_ball_box
+
+utahTeams = data.frame(Team = as.character(), Points = as.numeric())
+teams3 = c("Southern Utah", "Utah Tech")
+for (team in teams3){
+  games = bbTeam(cbbga6,team)
+  home = filter(games, Home == team)
+  away = filter(games, Away == team)
+  homePoints = home$HomeScore
+  AwayPoints = away$AwayScore
+  points = c(homePoints, AwayPoints)
+  for (pointsScored in points){
+    utahTeams = add_row(utahTeams, Team = team, Points = pointsScored)
+  }
+}
+
+#| fig-width: 10
+#| fig-height: 10
+#| out-width: "70%"
+#| fig-align: "center"
+box(utahTeams$Points, utahTeams$Team,"Teams","Points", "Boxplots of basketball points by teams")
+
+```
+
+### Part m (5 points)
+Create one more appropriate graphs for the 2025 basketball data. This graph could be anything you'd like as long as you use `ggplot2`, it shows something meaningful, and it is not the same as the graphs you made in parts k or l. 
+
+```{r}
+#| label: basket_ball_Hist2
+
+#| fig-width: 10
+#| fig-height: 10
+#| out-width: "70%"
+#| fig-align: "center"
+histogramer(cbbga6$HomeScore,"Points by Home Team","Frequency", "Histogram of Points Scored by Home Team")
+
+#| fig-width: 10
+#| fig-height: 10
+#| out-width: "70%"
+#| fig-align: "center"
+histogramer(cbbga6$AwayScore,"Points by Away Team","Frequency", "Histogram of Points Scored by Away Team")
+
+```
+
+# Problem 3 (15 points)
+Repeat parts b-e and g of Problem 2 using Python in Quarto. First, pass the original object that you read in from the website to Python without any changes to it (you do not need to read the file from the web in Python, but you can if you'd like) and then use `pandas` (or `polars` if you'd like) to rename the columns as indicated in part b, add the columns specified in part c, arrange the data as in part d, drop the "garbage" column as in part e, and filter it down as in part g. The `pandas` functions `rename`, `assign` (instead of `mutate`), `drop` (instead of `select`) and `str.contains` (used to select the right rows) will be useful here. Be sure to follow the guide in Notes 3 to properly install Python, install the `pandas` library and to load it in **R**.
+
+```{r}
+#these steps are to install python into RStudio and are only useful to execute once.
+
+#install.packages("reticulate")
+#library(reticulate)
+#install_python("3.14.2")
+#py_install(packages = "pandas")
+```
+
+```{python}
+#| label: basket_ball_Python
+import pandas
+bball = r.cbbga
+#rename columns
+bball2 = bball.rename(columns = {"X." : "unknown1", "X.." : "unknown2"})
+#make new column
+bball2["Difference"] = bball2["HomeScore"] - bball2["AwayScore"]
+#sort data
+bball3 = bball2.sort_values(by= "Home", ascending = True)
+#select important vars
+bball4 = bball3[["Date","Home","HomeScore","Away","AwayScore","Difference"]]
+#filter for 2025
+bball5 = bball4[(bball4["Date"].str)[6:10] == "2025"]
+#everything should be in order
+bball5.head()
+```

@@ -1,8 +1,18 @@
 ---
-title: "Homework 1"
-author: "Samuel Nankervis"
-format: html
-editor: visual
+title: "**MATH 3190 Homework 1**"
+subtitle: |
+  Due February 12, 2026\
+  Focus: Notes 5\
+  Total Points: 90 + 10 (Self-Critique Comment and Uploading to GitHub) = 100
+format:
+  html:
+    embed-resources: true # Keep this so the html file is easily shareable.
+urlcolor: blue
+execute: # Will set these as the default for all code chunks
+  eval: true
+  echo: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Quarto

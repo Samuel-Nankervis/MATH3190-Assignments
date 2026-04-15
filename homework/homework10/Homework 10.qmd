@@ -1,0 +1,171 @@
+---
+title: "**MATH 3190 Homework 10**"
+subtitle: |
+  Due April 16, 2026\
+  Focus: Notes 11\
+  Total Points: 45 + 10 (Self-Critique Comment and Uploading to GitHub) = 55
+format: 
+  html:
+    embed-resources: true # Keep this so the html file is easily shareable.
+urlcolor: blue
+execute: # Will set these as the default for all code chunks
+  eval: true
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Note that your homework should be completed in Quarto. You can just add your answers and code to this document in the appropriate part. The file should be rendered as an html document or pdf document (html is quicker to render and you will need an installation of LaTeX to render as a pdf). You will "turn in" this homework by uploading the files, the .qmd and output file, to your GitHub `Math_3190_Assignment` repository in the `Homework/Homework_10` directory. Make sure all supporting files (if there are any) are in this directory as well. You should use `git` and `Unix` commands in a terminal for this (i.e. don't manually upload files to GitHub). In addition, you will submit just your html or pdf file on Canvas to unlock the solutions.
+
+Don't forget to also put a [self-critique comment]{.underline} on Canvas indicating what you did correctly and incorrectly and include any questions you may have about the assignment after submitting the assignment and thoroughly looking through the solutions.
+
+```{r}
+#| label: load libraries
+
+library(math3190package)
+# install.packages("itsmr")
+library(itsmr)
+library(tsibble)
+library(ggtime)
+library(tseries)
+library(forecast)
+```
+
+# Problem 1 (45 points)
+
+In the `itsmr` package is the dataset called `wine` that contains 142 accounts of Australian red wine sales per month from January 1980 to October 1991.
+
+### Part a (5 points)
+Load in this data and convert it to a `tsibble`. You can do this by first making it a `ts` object by typing `ts(wine, deltat = 1/12, start = 1980)` and then piping that into the `as_tsibble()` function in the `tsibble` package.
+
+Then use `ggplot()` to plot the time series. Show both the points and lines connecting them. On the $x$ axis, put each year using the `scale_x_yearmonth()` function and give the plot a title.
+
+```{r}
+#| label: graph time series
+wineSales = as_tsibble(ts(wine, deltat = 1/12, start = 1980))
+ggplot(wineSales, aes(x = index, y = value)) +
+  geom_line(linewidth = 1) +
+  scale_x_yearmonth(date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(breaks = seq(100, max(wineSales$value), 200)) +
+  labs(x = "Date", y = "Wine sales",
+    title = "Wine sales from 1980 to 1991") +
+  theme(axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14, face = "bold"))
+```
+
+### Part b (2 points)
+Remove the last 34 rows from the wine data. We will use them to compare how our forecasts look later. 
+
+```{r}
+#| label: remove late rows
+wineSalesRemoved = wineSales[c(seq(1,nrow(wineSales)-34,1)), ]
+```
+
+### Part c (5 points)
+Use the `gg_season()` plot in the `ggtime` library to plot the seasonality. Does it seem like there is trend and/or seasonality in this time series? If so, explain the patterns. 
+
+```{r}
+#| label: seasons
+gg_season(wineSalesRemoved)
+```
+
+There appears to be a trend that wine sales increase in the summer, usually April to September, and decrease in the winter, October to march. The sales are especially large in July-August and low in January.
+
+### Part d (4 points)
+Use the `adf.test()` function in the `tseries` library to perform a Dickey-Fuller test to determine if we have evidence this time series is stationary. Only the column with the sales should be entered. Since we have data by month, use the `k = 12` option. Comment on the results of the test. 
+
+```{r}
+#| label: Dickey-Fuller
+adf.test(wineSalesRemoved$value, k = 12)
+```
+
+In this test, since our p value is high, we fail to reject the null hypothesis that our model is not stationary
+
+### Part e (6 points)
+Difference the data once. Take $Y_t = Y_{t+1} - Y_{t}$ for $t=1,\dots,n-1$. In the notes, I defined the differences as $Y_t = Y_{t} - Y_{t+1}$, but it actually does not matter. **Plot** this differenced time series (you can just put the index on the x-axis) and use the `adf.test()` function again on the differenced data. Again, use `k = 12` option. **Comment** on the results of the test. 
+
+```{r}
+#| label: difference
+wineSalesD = c()
+last = wineSalesRemoved[1, ]$value
+for (i in wineSalesRemoved[2:108, ]$value){
+  wineSalesD = c(as.numeric(wineSalesD), i - last)
+  last = i
+}
+wineSalesD
+wineSalesDate = wineSalesRemoved[2:108, ]$index
+wineSalesDifferenced = as_tsibble(data.frame(index = wineSalesDate, value = wineSalesD))
+ggplot(wineSalesDifferenced, aes(x = index, y = value)) +
+  geom_line(linewidth = 1) +
+  scale_x_yearmonth(date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(breaks = seq(min(wineSalesDifferenced$value), max(wineSalesDifferenced$value), 200)) +
+  labs(x = "Date", y = "Wine sales",
+    title = "Wine sales from 1980 to 1991") +
+  theme(axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14, face = "bold"))
+adf.test(wineSalesD, k = 12)
+```
+
+the p-value of the adf test is now exceptionally low, indicating that the model is stationary now. In the plot there appears to be an increase in the variance of wine sales as time continues. 
+
+### Part f (4 points)
+Now use the `auto.arima()` function in the `forecast` library to fit an ARIMA model to this time series (put the entire original tsibble into this function, not the differences time series).
+
+Feel free to check out [this resource](https://otexts.com/fpp2/arima-r.html) that discusses more about time series, including what the drift term is. 
+
+```{r}
+#| label: auto arima
+arimaMod = auto.arima(wineSalesRemoved)
+```
+
+### Part g (5 points)
+Use the `forecast()` function from the `forecast` library to predict the future for 34 months. You should specify you are using the `forecast` library by typing `forecast::forecast()` since the `itsmr` library also has a `forecast()` function. The input of this function is your model you fit in part (f). Use the model fit to the undifferenced data.
+
+Then use the `autoplot()` function to plot the forecast. 
+
+```{r}
+#| label: forecasting
+f = forecast::forecast(arimaMod, level = 95, h = 34)
+autoplot(f)
+```
+
+### Part h (8 points)
+Plot the actual values for 1989, 1990, and 1991 along with the predicted values from the forecast and a shaded 95% interval bands. The `geom_ribbon()` function may be useful here. Is there any point where the true value is outside the interval? If so, report the year(s) and month(s) where that is the case.
+
+```{r}
+#| label: forecasting against real
+f = forecast::forecast(arimaMod, level = 95, h = 34)
+f2 = data.frame(date = yearmonth(wineSales[109:142, ]$index), lower = as.numeric(f$lower), upper = as.numeric(f$upper), estimate = as.numeric(f$mean))
+r = data.frame(date = yearmonth(wineSales[109:142, ]$index), point = wineSales[109:142, ]$value)
+
+ggplot() +
+  geom_ribbon(data = f2, aes(x = date, ymin = lower, ymax = upper), 
+              fill = "steelblue", alpha = 0.2) +
+  geom_line(data = f2, aes(x = date, y = estimate), 
+            color = "blue", linewidth = 1) +
+  geom_line(data = r, aes(x = date, y = point), 
+            color = "black", linewidth = 1) +
+  scale_x_yearmonth(date_breaks = "6 months", date_labels = "%b %Y") +
+  labs(title = "Actual vs. Forecasted Wine Sales",
+       subtitle = "95% Confidence Interval Shaded",
+       x = "Date", y = "Sales")
+
+```
+
+There never seems to be a point where the true wine sales (black line) are outside the estimated 95% interval. 
+
+### Part i (6 points)
+Use the `checkresiduals()` function in the `forecast` library to create a residual plot, an autocorrelation plot, and a histogram for the residuals. The input to this function should be your model fit with the `auto.arima()` function. Comment on whether the assumptions seem to be satisfied here. If you'd like, you can make a QQ-plot as well, but the histogram contains the same information. 
+
+Note: this function will also give you information from the Ljung-Box test, which tests if the residuals exhibit autocorrelation. A large p-value means we have no evidence of autocorrelation.
+
+```{r}
+#| label: check residuals
+checkresiduals(f)
+```
+
+There doesn't seem to be a pattern in the residuals, so we can safely assume that we have captured the trend from our data. although there does seem to be some more variation later in the graph.
+
+There is only one point with significant autocorrelation, so this model seems to be working just fine. 
+
+The residuals appear to have an approximately normal distribution, although they are skewed slightly right. 
